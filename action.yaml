@@ -28,11 +28,11 @@ runs:
     - shell: "bash"
       run: |
        # make ssh dir
-       mkdir -p "~/.ssh";
+       mkdir -p ~/.ssh/;
 
        # decode ssh key and change permission
-       echo ${{ inputs.ssh_key_base64 }} | base64 -d > "~/.ssh/${{ inputs.ssh_identity_file_name }}";
-       chmod 600 "~/.ssh/${{ inputs.ssh_identity_file_name }}";
+       echo ${{ inputs.ssh_key_base64 }} | base64 -d > ~/.ssh/${{ inputs.ssh_identity_file_name }};
+       chmod 600 ~/.ssh/${{ inputs.ssh_identity_file_name }};
 
        # setup ssh config
        echo "Host ${{ inputs.ssh_alias }}" > ~/.ssh/config
