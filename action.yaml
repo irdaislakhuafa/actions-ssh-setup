@@ -35,12 +35,10 @@ runs:
        chmod 600 "~/.ssh/${{ inputs.ssh_identity_file_name }}";
 
        # setup ssh config
-       echo <<EOF > "~/.ssh/config"
-       Host ${{ inputs.ssh_alias }}
-         HostName ${{ inputs.ssh_host }}
-         Port ${{ inputs.ssh_port }}
-         User ${{ inputs.ssh_user }}
-         IdentityFile ~/.ssh/${{ inputs.ssh_identity_file_name }}
-         StrictHostKeyChecking no
-       EOF
+       echo "Host ${{ inputs.ssh_alias }}" > ~/.ssh/config
+       echo "  HostName ${{ inputs.ssh_host }}" >> ~/.ssh/config
+       echo "  Port ${{ inputs.ssh_port }}" >> ~/.ssh/config 
+       echo "  User ${{ inputs.ssh_user }}" >> ~/.ssh/config 
+       echo "  IdentityFile ~/.ssh/${{ inputs.ssh_identity_file_name }}" >> ~/.ssh/config 
+       echo "  StrictHostKeyChecking no" >> ~/.ssh/config
      
