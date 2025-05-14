@@ -28,20 +28,19 @@ runs:
     - shell: "bash"
       run: |
        # make ssh dir
-       export SSH_DIR="~/.ssh";
-       mkdir -p "${SSH_DIR}";
+       mkdir -p "~/.ssh";
 
        # decode ssh key and change permission
-       echo ${{ inputs.ssh_key_base64 }} | base64 -d > "${SSH_DIR}/${{ inputs.ssh_identity_file_name }}";
-       chmod 600 "${SSH_DIR}/${{ inputs.ssh_identity_file_name }}";
+       echo ${{ inputs.ssh_key_base64 }} | base64 -d > "~/.ssh/${{ inputs.ssh_identity_file_name }}";
+       chmod 600 "~/.ssh/${{ inputs.ssh_identity_file_name }}";
 
        # setup ssh config
-       echo <<EOF > "${SSH_DIR}/config"
+       echo <<EOF > "~/.ssh/config"
        Host ${{ inputs.ssh_alias }}
          HostName ${{ inputs.ssh_host }}
          Port ${{ inputs.ssh_port }}
          User ${{ inputs.ssh_user }}
-         IdentityFile ${SSH_DIR}/${{ inputs.ssh_identity_file_name }}
+         IdentityFile ~/.ssh/${{ inputs.ssh_identity_file_name }}
          StrictHostKeyChecking no
        EOF
      
