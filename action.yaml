@@ -41,4 +41,5 @@ runs:
        echo "  User ${{ inputs.ssh_user }}" >> ~/.ssh/config 
        echo "  IdentityFile ~/.ssh/${{ inputs.ssh_identity_file_name }}" >> ~/.ssh/config 
        echo "  StrictHostKeyChecking no" >> ~/.ssh/config
+       echo "  IdentitiesOnly yes" >> ~/.ssh/config
      
